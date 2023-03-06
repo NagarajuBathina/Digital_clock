@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Clock</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        #bgimg{
+            background-size: 100% 600px;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        #HoursAndMinutes{
+            font-size: 150px;
+            position: absolute;
+            left: 450px;
+            top: 170px;
+            color: white;
+            text-shadow: 0px 0px 10px black;
+            z-index: 1;
+        }
+        #AmorPm{
+            display: flex;
+            position: absolute;
+            right: 468px;
+            top: 250px;
+            font-size: 60px;
+            color: white;
+            text-shadow: 0px 0px 10px black;
+            z-index: 1;
+        }
+        #DateWithMonthAndYear{
+            position: absolute;
+            font-size: 40px;
+            left: 510px;
+            top: 320px;
+            color:rgb(81, 255, 0);
+            text-shadow: 0px 0px 10px black;
+        }
+        #Day{
+            position: absolute;
+            font-size: 70px;
+            left: 470px;
+            top: 360px;
+            letter-spacing: 10px;
+            color: white;
+            text-shadow: 0px 0px 10px black;
+        }
+        #Sec{
+            position: absolute;
+            left: 460px;
+            top: 100px;
+            font-size: 350px;
+            z-index: 0;
+            opacity: 0.5;
+            text-shadow: 0px 0px 10px white;
+        }
+    </style>
+</head>
+<body onload="currentTimeAndDate()" id="bgimg">
+    <h1 id="HoursAndMinutes"></h1>
+    <h1 id="AmorPm"></h1>
+    <h1 id="Sec"></h1>
+    <h1 id="DateWithMonthAndYear"></h1>
+    <h1 id="Day"></h1>
+    <script>
+        function currentTimeAndDate()
+        {
+            var date= new Date();
+            var hh=date.getHours();
+            var mm=date.getMinutes();
+            var ss=date.getSeconds();
+            var am_pm="AM"
+            if(hh==0)
+            {
+                hh=12;
+                am_pm="AM"
+            }
+            if(hh>=12)
+            {
+                am_pm="PM"
+                if(hh>=13)
+                {
+                    hh-=12;
+                }
+            }
+            var time=hh+":"+mm;
+            
+            document.getElementById("HoursAndMinutes").innerHTML=time;
+            document.getElementById("AmorPm").innerHTML=am_pm;
+            document.getElementById("Sec").innerHTML=ss;
+            var mo=date.getMonth();
+            var dd=date.getDay();
+            var yy=date.getFullYear();
+            var dt=date.getDate();
+            var day=" ";
+            
+            switch(dd)
+            {
+                case 0: day="Sunday"
+                document.getElementById("bgimg").style.backgroundImage="url(./church.jpg.webp)"
+                break;
+                case 1: day="Monday"
+                document.getElementById("bgimg").style.backgroundImage="url(./shiva.webp)"
+                break;
+                case 2: day="Tuesday"
+                document.getElementById("bgimg").style.backgroundImage="url(./hanuman.jpg)"
+                break;
+                case 3: day="Wednesday"
+                document.getElementById("bgimg").style.backgroundImage="url(./ayyappa.jpg)"
+                break;
+                case 4: day="Thursday"
+                document.getElementById("bgimg").style.backgroundImage="url(./saibaba.jpg)"
+                break;
+                case 5: day="Friday"
+                document.getElementById("bgimg").style.backgroundImage="url(./mosque.jpeg)"
+                break;
+                case 6: day="Saturday"
+                document.getElementById("bgimg").style.backgroundImage="url(./venkateswara.jpg)"
+                break;
+        }
+
+            var month=" "
+            if(mo==0)
+            {
+                month="Jan"
+            }
+            else if(mo==1)
+            {
+                month="feb"
+            }
+            else if(mo==2)
+            {
+                month="mar"
+            }
+            else if(mo==3)
+            {
+                month="apr"
+            }
+            else if(mo==4)
+            {
+                month="may"
+            }
+            else if(mo==5)
+            {
+                month="june"
+            }
+            else if(mo==6)
+            {
+                month="july"
+            }
+            else if(mo==7)
+            {
+                month="aug"
+            }
+            else if(mo==8)
+            {
+                month="sep"
+            }
+            else if(mo==9)
+            {
+                month="oct"
+            }
+            else if(mo==10)
+            {
+                month="nov"
+            }
+            else 
+            {
+                month="dec"
+            }
+            var DateWithMonthAndYear=dt+"/"+month+"/"+yy
+
+            document.getElementById("DateWithMonthAndYear").innerHTML=DateWithMonthAndYear;
+            document.getElementById("Day").innerHTML=day;
+
+            var refreshthepage=setTimeout(function(){currentTimeAndDate()},1000)
+        }
+    </script>
+</body>
+</html>
